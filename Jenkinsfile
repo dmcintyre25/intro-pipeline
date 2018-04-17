@@ -10,7 +10,7 @@ pipeline {
     }
     stage('Deploy') {
       options {
-        timeout(time: 10, unit: 'MINUTES')
+        timeout(time: 10, unit: 'SECONDS')
       }
       input {
         message 'Which Version?'
@@ -29,6 +29,13 @@ v1.3''', description: 'What to deploy?')
   environment {
     MY_NAME = 'Daniel'
     TEST_USER = credentials('test-user')
+  }
+  post {
+    aborted {
+      echo 'Why didn\'t you push my button?'
+      
+    }
+    
   }
   parameters {
     string(name: 'Name', defaultValue: 'whoever you are', description: 'Who should I say hi to?')
